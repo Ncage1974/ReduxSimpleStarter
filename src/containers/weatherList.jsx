@@ -2,29 +2,33 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Chart from '../components/chart.jsx';
 
+function convertKelvinToF(temp) {
+    return _.round(((9 / 5) * (temp - 273)) + 32);
+}
+
 class WeatherList extends Component {
+
+
 
     renderWeather(cityData) {
         const name = cityData.city.name;
-        const temps = cityData.list.map((weatherReading) => { return weatherReading.main.temp });
+        const temps = cityData.list.map((weatherReading) => { return convertKelvinToF(weatherReading.main.temp) });
         const pressures = cityData.list.map((weatherReading) => { return weatherReading.main.pressure });
         const humidities = cityData.list.map((weatherReading) => { return weatherReading.main.humidity });
-        console.log(temps.length);
-        console.log(pressures.length);
-        console.log(humidities.length);
+        console.log(humidities);
         return (
             <tr key={name}>
                 <td>
                     {cityData.city.name}
                 </td>
                 <td>
-                    <Chart data={temps} color="orange" />
+                    <Chart data={temps} color="orange" units="F" />
                 </td>
                 <td>
-                    <Chart data={pressures} color="green" />
+                    <Chart data={pressures} color="green" units="hPA" />
                 </td>
                 <td>
-                    <Chart data={humidities} color="black" />
+                    <Chart data={humidities} color="black" units="%" />
                 </td>
             </tr>
         );
