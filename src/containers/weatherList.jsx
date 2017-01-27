@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Chart from '../components/chart.jsx';
+import GoogleMap from '../components/googleMap.jsx';
 
 function convertKelvinToF(temp) {
     return _.round(((9 / 5) * (temp - 273)) + 32);
@@ -15,11 +16,13 @@ class WeatherList extends Component {
         const temps = cityData.list.map((weatherReading) => { return convertKelvinToF(weatherReading.main.temp) });
         const pressures = cityData.list.map((weatherReading) => { return weatherReading.main.pressure });
         const humidities = cityData.list.map((weatherReading) => { return weatherReading.main.humidity });
-        console.log(humidities);
+        
+        const { lon, lat } = cityData.city.coord;
+        
         return (
             <tr key={name}>
                 <td>
-                    {cityData.city.name}
+                    <GoogleMap lon={ lon } lat={ lat } />
                 </td>
                 <td>
                     <Chart data={temps} color="orange" units="F" />
