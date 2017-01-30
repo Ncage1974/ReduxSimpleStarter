@@ -19,4 +19,4 @@ class PostIndex extends Component {
     return bindActionCreators({ fetchPosts}, dispatch);
 }*/
 
-export default connect(null, {fetchPosts: fetchPosts})(PostIndex);
+export default connect(null, {fetchPosts })(PostIndex);
