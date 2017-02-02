@@ -13,7 +13,7 @@ class PostsNew extends Component {
                     <div className={`form-group ${title.touched && title.invalid ? 'has-danger' : ''}`}>
                         <label>Title</label>
                         <input type="text" className="form-control" {...title} />
-                        <div className="text-help">
+                        <div className="text-help col-form-label">
                             {title.touched ? title.error : ''}
                         </div>
                     </div>
@@ -21,7 +21,7 @@ class PostsNew extends Component {
                     <div className={`form-group ${categories.touched && categories.invalid ? 'has-danger' : ''}`}>
                         <label>Categories</label>
                         <input type="text" className="form-control" {...categories} />
-                        <div className="text-help">
+                        <div className="text-help col-form-label">
                             {categories.touched ? categories.error : ''}
                         </div>
                     </div>
